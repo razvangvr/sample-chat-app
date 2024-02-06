@@ -2,7 +2,8 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
-    uri: 'http://localhost:8080/graphql', // Replace with your GraphQL API endpoint
+    // uri: 'http://localhost:3000/graphql', // --Si asta o mers
+    uri: '/graphql',
     cache: new InMemoryCache(),
 });
 

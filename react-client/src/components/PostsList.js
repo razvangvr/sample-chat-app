@@ -21,7 +21,7 @@ const PostsList = () => {
     return (
         <ul>
             {data.allPosts.map((post) => (
-                <li key={post.id}>
+                <li key={post.author}>
                     {post.author}
                 </li>
             ))}

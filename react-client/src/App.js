@@ -10,10 +10,12 @@ In your root App.js file, wrap your React application with the ApolloAppProvider
 
 const App = () => {
     return (
-        <ApolloAppProvider>
+        <>
             <MyComponent/>
-            <PostsList/>
-        </ApolloAppProvider>
+            <ApolloAppProvider>
+                <PostsList/>
+            </ApolloAppProvider>
+        </>
     )
 }
 
