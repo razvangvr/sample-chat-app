@@ -18,9 +18,9 @@ const App = () => {
                 <PostsList/>
             </ApolloAppProvider>
             <hr/>
-            <ApolloAppProviderWebSocketLink>
+            {/*<ApolloAppProviderWebSocketLink>
                 <PostSub/>
-            </ApolloAppProviderWebSocketLink>
+            </ApolloAppProviderWebSocketLink>*/}
 
         </>
     )
