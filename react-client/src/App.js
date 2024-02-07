@@ -3,6 +3,8 @@ import './App.css';
 import MyComponent from "./components/MyComponent";
 import ApolloAppProvider from "./ApolloProvider";
 import PostsList from "./components/PostsList";
+import ApolloAppProviderWebSocketLink from "./ApolloProviderWebSocketLink";
+import PostSub from "./components/PostSub";
 
 /*
 In your root App.js file, wrap your React application with the ApolloAppProvider component:
@@ -15,6 +17,11 @@ const App = () => {
             <ApolloAppProvider>
                 <PostsList/>
             </ApolloAppProvider>
+            <hr/>
+            <ApolloAppProviderWebSocketLink>
+                <PostSub/>
+            </ApolloAppProviderWebSocketLink>
+
         </>
     )
 }
