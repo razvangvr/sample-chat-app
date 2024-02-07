@@ -21,7 +21,7 @@ const PostsSub = () => {
     return (
         <div>
             <h3>New Post</h3>
-            <p>Title: {data.author}</p>
+            <p>Title: {data.postCreated.author}</p>
         </div>
     );
 };

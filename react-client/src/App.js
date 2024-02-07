@@ -5,6 +5,7 @@ import ApolloAppProvider from "./ApolloProvider";
 import PostsList from "./components/PostsList";
 import ApolloAppProviderWebSocketLink from "./ApolloProviderWebSocketLink";
 import PostSub from "./components/PostSub";
+import ApolloProviderGraphqlWs from "./ApolloProviderGraphqlWs";
 
 /*
 In your root App.js file, wrap your React application with the ApolloAppProvider component:
@@ -21,6 +22,10 @@ const App = () => {
             {/*<ApolloAppProviderWebSocketLink>
                 <PostSub/>
             </ApolloAppProviderWebSocketLink>*/}
+
+            <ApolloProviderGraphqlWs>
+                <PostSub/>
+            </ApolloProviderGraphqlWs>
 
         </>
     )
