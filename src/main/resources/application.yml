@@ -16,7 +16,9 @@ spring:
     password: senha-secreta
 
   jpa:
+    show-sql: true
     hibernate:
+#      ddl-auto: validate | create-drop
       ddl-auto: update
 
   sql:

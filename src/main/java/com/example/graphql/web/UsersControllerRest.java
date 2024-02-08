@@ -13,11 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class UsersRest {
+public class UsersControllerRest {
 
 
     private final UserRepository userRepository;
 
+    /**
+     * http://localhost:8080/users
+     * */
     @GetMapping
     public List<User> getAllUsers(){
         List<User> all = userRepository.findAll();
