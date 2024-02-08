@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+
+  sboot-data-db:
+    container_name: graphql-db
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: loyalty
+      MYSQL_PASSWORD: 'senha-secreta'
+      # Password for root access
+      #The default docker image has `root` user and root user has all privileges.
+      MYSQL_ROOT_PASSWORD: 'senha-secreta'
+    volumes:
+      - "/volumes/db-data/demo-db:/var/lib/mysql:rw"
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 3307:3306
+    restart: always
+    expose:
+      # Opens port 3306 on the container
+      - '3306'

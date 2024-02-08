@@ -9,3 +9,25 @@ spring:
     path: /graphql
     websocket:
       path: /graphql
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/demo
+    username: root
+    password: senha-secreta
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  sql:
+    init:
+      # never/always
+      # always - ca sa imi genereza SQL Tables din Entity
+      # always - ca sa imi ruleze SQL Scripts, E.G. data.sql into the DB
+      mode: never
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: debug
