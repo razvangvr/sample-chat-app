@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: "jdbc:h2:mem:test;MODE=MYSQL;DB_CLOSE_ON_EXIT=false"
+    username: "sa"
+    password: ""
+    driver-class-name: "org.h2.Driver"
+
+  jpa:
+    defer-datasource-initialization: true
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+#      ddl-auto: validate | create-drop
+      ddl-auto: create-drop
+
+  sql:
+    init:
+      # never/always
+      # always - ca sa imi genereza SQL Tables din Entity
+      # always - ca sa imi ruleze SQL Scripts, E.G. data.sql into the DB
+      mode: always
+
+
