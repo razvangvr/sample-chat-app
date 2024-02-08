@@ -1,5 +1,6 @@
 package com.example.graphql.entity;
 
+import com.example.graphql.Post;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.context.annotation.Lazy;
@@ -23,5 +24,11 @@ public class User implements IEntity {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    private List<Message> messagesAuthored;
+
+    @OneToMany(mappedBy = "recipient")
+    private List<Message> messagesReceived;
 
 }

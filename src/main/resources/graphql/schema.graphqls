@@ -1,3 +1,39 @@
+interface Entity {
+    id: ID!
+}
+
+enum EntityType {
+    USER
+    MESSAGE
+}
+type User  implements Entity{
+    id: ID!
+    username: String
+    email: String
+    password: String
+    messagesAuthored: [Message]
+    messagesReceived: [Message]
+}
+
+type Message  implements Entity{
+    id: ID!
+    content: String
+    author: User
+    recipient: User
+}
+
+input AddMessageRequest {
+    author: String!
+    content: String!
+}
+
+type Mutation {
+    postMessage(message: AddMessageRequest): Message
+}
+
+
+
+#-----------
 type Post {
     author: String
 }
@@ -11,4 +47,5 @@ type Query {
 #The postCreated field will update its value whenever a new Post is created on the backend, thus pushing the Post to subscribing clients.
 type Subscription {
     postCreated: Post
+    messageCreated: Message
 }
