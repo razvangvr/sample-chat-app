@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TextInputComponent from "./TextInputComponent";
+import MessageArrayComponent from "./MessageArrayComponent";
 
 
 const MainChatComponent = ({ user }) => {
@@ -14,21 +15,31 @@ const MainChatComponent = ({ user }) => {
         setMessageInput(textValue);
     };
 
+    const onMessageEntered = () => {
+        console.log('Post The Message, call GraphQL Mutation:',postedMessages);
+        //postedMessages.push(messageInput); --> Bad Mistake Don't change the State Directly!
+        const arrNew = [...postedMessages, messageInput]
+        //Update State
+        setPostedMessages(arrNew);
+    }
+
     return (
         <div>
             <p>currentUser: {currentUser}</p>
             <div>
-                <TextInputComponent content={messageInput}  handleInputChange={handleInputChange}/>
+                <TextInputComponent
+                    content={messageInput}
+                    handleInputChange={handleInputChange}
+                    handleMessageEntered={onMessageEntered}
+                />
             </div>
             <div style={{ display: 'flex', width: '80%' }}>
                 <div style={{ flex: 1, width: '50%' }}>
-                    <table>
-                        <th>Sent</th>
-                    </table>
+                   <MessageArrayComponent messages={postedMessages}/>
                 </div>
                 <div style={{ flex: 1, width: '50%' }}>
-                    <table>
-                        <th>Received</th>
+                    <table><thead><tr><th>Received</th></tr></thead>
+
                     </table>
                 </div>
             </div>
