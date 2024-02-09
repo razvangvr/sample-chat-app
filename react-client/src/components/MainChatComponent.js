@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TextInputComponent from "./TextInputComponent";
 import MessageArrayComponent from "./MessageArrayComponent";
+import UncontrolledTextInput from "./UncontrolledTextInput";
+import ApolloAppProvider from "../ApolloProvider";
 
 
 const MainChatComponent = ({ user }) => {
@@ -15,23 +17,22 @@ const MainChatComponent = ({ user }) => {
         setMessageInput(textValue);
     };
 
-    const onMessageEntered = () => {
-        console.log('Post The Message, call GraphQL Mutation:',postedMessages);
+    const onMessageEntered = (messageInput) => {
+        console.log('>>> CALL GraphQL Mutation:',messageInput);//TODO
         //postedMessages.push(messageInput); --> Bad Mistake Don't change the State Directly!
         const arrNew = [...postedMessages, messageInput]
         //Update State
         setPostedMessages(arrNew);
+
     }
 
     return (
         <div>
             <p>currentUser: {currentUser}</p>
             <div>
-                <TextInputComponent
-                    content={messageInput}
-                    handleInputChange={handleInputChange}
-                    handleMessageEntered={onMessageEntered}
-                />
+                <ApolloAppProvider>
+                    <UncontrolledTextInput handleMessageEntered={onMessageEntered}/>
+                </ApolloAppProvider>
             </div>
             <div style={{ display: 'flex', width: '80%' }}>
                 <div style={{ flex: 1, width: '50%' }}>

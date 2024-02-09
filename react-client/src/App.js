@@ -11,6 +11,7 @@ import MainChatComponent from "./components/MainChatComponent";
 import Users from "./components/usersConst";
 
 import React, { useState } from 'react';
+import UncontrolledTextInput from "./components/UncontrolledTextInput";
 
 /*
 In your root App.js file, wrap your React application with the ApolloAppProvider component:
