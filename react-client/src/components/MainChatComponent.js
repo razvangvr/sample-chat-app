@@ -3,6 +3,8 @@ import MessageArrayComponent from "./MessageArrayComponent";
 import UncontrolledTextInput from "./UncontrolledTextInput";
 import ApolloAppProvider from "../ApolloProvider";
 import MessageSender from "./MessageSender";
+import ApolloProviderGraphqlWs from "../ApolloProviderGraphqlWs";
+import MessageSubscriptionArray from "./MessageSubscriptionArray";
 
 
 const MainChatComponent = ({user}) => {
@@ -12,12 +14,8 @@ const MainChatComponent = ({user}) => {
     const [currentUser, setCurrentUser] = useState(user);
     const [messageInput, setMessageInput] = useState("");
     const [postedMessages, setPostedMessages] = useState([]);
-    const [receivedMessages, setReceivedMessages] = useState([]);
 
 
-    const handleInputChange = (textValue) => {
-        setMessageInput(textValue);
-    };
 
     const onMessageEntered = (newMessage) => {
 
@@ -44,16 +42,13 @@ const MainChatComponent = ({user}) => {
             </div>
             <div style={{display: 'flex', width: '80%'}}>
                 <div style={{flex: 1, width: '50%'}}>
-                    <MessageArrayComponent messages={postedMessages}/>
+                    <MessageArrayComponent header={"Sent"} messages={postedMessages}/>
                 </div>
                 <div style={{flex: 1, width: '50%'}}>
                     <table>
-                        <thead>
-                        <tr>
-                            <th>Received</th>
-                        </tr>
-                        </thead>
-
+                        <ApolloProviderGraphqlWs>
+                            <MessageSubscriptionArray/>
+                        </ApolloProviderGraphqlWs>
                     </table>
                 </div>
             </div>

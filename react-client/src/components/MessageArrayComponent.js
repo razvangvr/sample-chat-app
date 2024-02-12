@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MessageArrayComponent = ({messages}) => {
+const MessageArrayComponent = ({header,messages}) => {
 
     console.log("messages ::", messages);
 
@@ -9,7 +9,7 @@ const MessageArrayComponent = ({messages}) => {
             <table>
                 <thead>
                 <tr>
-                    <th>Sent</th>
+                    <th>{header}</th>
                 </tr>
                 </thead>
                 {messages.map((stringMsg, index) => (
