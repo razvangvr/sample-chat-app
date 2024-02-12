@@ -7,6 +7,8 @@ import MessageSender from "./MessageSender";
 
 const MainChatComponent = ({user}) => {
 
+    const [messageCounter, setMessageCounter] = useState(0);
+
     const [currentUser, setCurrentUser] = useState(user);
     const [messageInput, setMessageInput] = useState("");
     const [postedMessages, setPostedMessages] = useState([]);
@@ -17,14 +19,16 @@ const MainChatComponent = ({user}) => {
         setMessageInput(textValue);
     };
 
-    const onMessageEntered = (messageInput) => {
-        //console.log('>>> CALL GraphQL Mutation:',messageInput);//TODO
-        setMessageInput(messageInput);
+    const onMessageEntered = (newMessage) => {
 
         //postedMessages.push(messageInput); --> Bad Mistake Don't change the State Directly!
-        const arrNew = [...postedMessages, messageInput]
+        const arrNew = [...postedMessages, newMessage]
         //Update State
         setPostedMessages(arrNew);
+
+        const incremented = messageCounter + 1;
+        setMessageCounter(incremented);
+        setMessageInput(newMessage);
     }
 
     return (
@@ -33,7 +37,9 @@ const MainChatComponent = ({user}) => {
             <div>
                 <UncontrolledTextInput handleMessageEntered={onMessageEntered}/>
                 <ApolloAppProvider>
-                    <MessageSender  initialAuthor={user} initialText={messageInput}/>
+                    <MessageSender initialAuthor={user}
+                                   initialText={messageInput}
+                                   counter={messageCounter}/>
                 </ApolloAppProvider>
             </div>
             <div style={{display: 'flex', width: '80%'}}>
