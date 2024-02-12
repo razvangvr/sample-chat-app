@@ -25,58 +25,47 @@ const App = () => {
         setSelectedUser(value);
     };
 
-    let displayElement;
+    let displayElemMainChatComponent;
     if (selectedUser === Users.ROBI) {
-        displayElement = <MainChatComponent user={Users.ROBI}/>;
+        displayElemMainChatComponent = <MainChatComponent user={Users.ROBI}/>;
     } else if(selectedUser === Users.STEFI){
-        displayElement = <MainChatComponent user={Users.STEFI}/>;
+        displayElemMainChatComponent = <MainChatComponent user={Users.STEFI}/>;
     } else {
-        displayElement = <span>Please Select a User</span>;
+        displayElemMainChatComponent = <span>Please Select a User</span>;
     }
 
     return (
         <>
             <div>
-                {displayElement}
+                {displayElemMainChatComponent}
             </div>
             {(selectedUser==null) ?
-                (<div>
-                <label>
-                    <input
-                        type="radio"
-                        name="toggle"
-                        value={Users.ROBI}
-                        checked={setSelectedUser === Users.ROBI}
-                        onChange={() => handleUserSelection(Users.ROBI)}
-                    />
-                    {Users.ROBI}
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="toggle"
-                        value={Users.STEFI}
-                        checked={setSelectedUser === Users.STEFI}
-                        onChange={() => handleUserSelection(Users.STEFI)}
-                    />
-                    {Users.STEFI}
-                </label>
-            </div>
+                (
+                    <div>
+                        <label>
+                            <input
+                                type="radio"
+                                name="toggle"
+                                value={Users.ROBI}
+                                checked={setSelectedUser === Users.ROBI}
+                                onChange={() => handleUserSelection(Users.ROBI)}
+                            />
+                            {Users.ROBI}
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="toggle"
+                                value={Users.STEFI}
+                                checked={setSelectedUser === Users.STEFI}
+                                onChange={() => handleUserSelection(Users.STEFI)}
+                            />
+                            {Users.STEFI}
+                        </label>
+                    </div>
                 ) : (<div></div>)}
             <hr/>
-            <ApolloAppProvider>
-                <PostsList/>
-            </ApolloAppProvider>
-            <hr/>
-            {/*<ApolloAppProviderWebSocketLink>
-                <PostSub/>
-            </ApolloAppProviderWebSocketLink>*/}
 
-            <ApolloProviderGraphqlWs>
-                <PostSub/>
-            </ApolloProviderGraphqlWs>
-
-            <hr/>
             <ApolloProviderGraphqlWs>
                 <MessageSubscription/>
             </ApolloProviderGraphqlWs>

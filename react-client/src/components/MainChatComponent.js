@@ -33,7 +33,7 @@ const MainChatComponent = ({user}) => {
 
     return (
         <div>
-            <p>currentUser: {currentUser}</p>
+            <p>currentUser: <b><i>{currentUser}</i></b></p>
             <div>
                 <UncontrolledTextInput handleMessageEntered={onMessageEntered}/>
                 <ApolloAppProvider>

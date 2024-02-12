@@ -12,6 +12,8 @@ const NEW_MESSAGE_SUBSCRIPTION = gql`
     }
 `;
 
+//Message Subscription Debug Component
+
 const MessageSubscription = () => {
     const { loading, error, data } = useSubscription(NEW_MESSAGE_SUBSCRIPTION);
 
@@ -23,9 +25,8 @@ const MessageSubscription = () => {
 
     return (
         <div>
-            <span>From: {data.messageCreated.author.username}</span>
-            <p>: {data.messageCreated.content}</p>
-            <span>To: {data.messageCreated.recipient.username}</span>
+            <p>
+                <span>{data.messageCreated.author.username}</span>-><span>{data.messageCreated.recipient.username}</span>:{data.messageCreated.content}</p>
         </div>
     );
 };

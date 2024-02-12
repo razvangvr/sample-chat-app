@@ -12,7 +12,9 @@ const UncontrolledTextInput = ({handleMessageEntered}) => {
 
     return (
         <div>
-            <input type="text" onKeyPress={handleKeyPress} />
+            <input type="text"
+                   size="55"
+                   onKeyPress={handleKeyPress} />
         </div>
     );
 };
