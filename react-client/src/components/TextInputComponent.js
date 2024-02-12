@@ -2,9 +2,6 @@
 
 const TextInputComponent = ({content, handleInputChange, handleMessageEntered}) => {
 
-
-
-
     const handleInputKeyPress = (event) => {
         if (event.key === 'Enter') {
             // Update text or perform any action here
