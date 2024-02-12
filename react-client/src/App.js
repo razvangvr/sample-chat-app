@@ -66,9 +66,9 @@ const App = () => {
                 ) : (<div></div>)}
             <hr/>
 
-            <ApolloProviderGraphqlWs>
+            {/*<ApolloProviderGraphqlWs>
                 <MessageSubscription/>
-            </ApolloProviderGraphqlWs>
+            </ApolloProviderGraphqlWs>*/}
 
         </>
     )

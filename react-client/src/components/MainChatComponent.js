@@ -14,7 +14,7 @@ const MainChatComponent = ({user}) => {
     const [currentUser, setCurrentUser] = useState(user);
     const [messageInput, setMessageInput] = useState("");
     const [postedMessages, setPostedMessages] = useState([]);
-
+    const [receivedMessages, setReceivedMessages] = useState([]);
 
 
     const onMessageEntered = (newMessage) => {
@@ -27,6 +27,13 @@ const MainChatComponent = ({user}) => {
         const incremented = messageCounter + 1;
         setMessageCounter(incremented);
         setMessageInput(newMessage);
+    }
+
+
+    const onMessageReceived = (newMessage) => {
+        const arrNew = [...receivedMessages, newMessage]
+        //Update State
+        setReceivedMessages(arrNew);
     }
 
     return (
@@ -45,14 +52,12 @@ const MainChatComponent = ({user}) => {
                     <MessageArrayComponent header={"Sent"} messages={postedMessages}/>
                 </div>
                 <div style={{flex: 1, width: '50%'}}>
-                    <table>
-                        <ApolloProviderGraphqlWs>
-                            <MessageSubscriptionArray/>
-                        </ApolloProviderGraphqlWs>
-                    </table>
+                    <MessageArrayComponent header={"Received"} messages={receivedMessages}/>
                 </div>
             </div>
-
+            <ApolloProviderGraphqlWs>
+                <MessageSubscriptionArray currentUser={user} handleMessageReceived={onMessageReceived}/>
+            </ApolloProviderGraphqlWs>
         </div>
     );
 

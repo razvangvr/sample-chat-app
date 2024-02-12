@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { gql, useSubscription } from '@apollo/client';
+import MessageArrayComponent from "./MessageArrayComponent";
 
 const NEW_MESSAGE_SUBSCRIPTION = gql`
     subscription NewMessagePosted {
@@ -14,12 +15,30 @@ const NEW_MESSAGE_SUBSCRIPTION = gql`
 
 //Message Subscription Debug Component
 
-const MessageSubscriptionArray = () => {
+const MessageSubscriptionArray = ({currentUser, handleMessageReceived}) => {
 
-    const [receivedMessages, setReceivedMessages] = useState([]);
+    //const [receivedMessages, setReceivedMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
 
-    const { loading, error, data } = useSubscription(NEW_MESSAGE_SUBSCRIPTION);
+    // const { loading, error, data } = useSubscription(NEW_MESSAGE_SUBSCRIPTION);
+    useSubscription(NEW_MESSAGE_SUBSCRIPTION, {
+        onSubscriptionData: ({ subscriptionData }) => {
+            console.log(">>>",subscriptionData)
+            const newMessage = {
+                author: subscriptionData.data.messageCreated.author.username,
+                content: subscriptionData.data.messageCreated.content,
+                recipient: subscriptionData.data.messageCreated.recipient.username
+            }
+            if(newMessage.recipient ===  currentUser) {
+                handleMessageReceived(newMessage.content);
+            }else {
+                //message from Self, ignore it
+            }
+            setLoading(false);
+        }
+    });
 
     if (loading) return <p>Loading...</p>;
     if (error) {
@@ -29,8 +48,7 @@ const MessageSubscriptionArray = () => {
 
     return (
         <div>
-            <p>
-                <span>{data.messageCreated.author.username}</span>-><span>{data.messageCreated.recipient.username}</span>:{data.messageCreated.content}</p>
+           {/*TODO, Display the message received count*/}
         </div>
     );
 };
